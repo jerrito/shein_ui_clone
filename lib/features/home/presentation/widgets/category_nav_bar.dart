@@ -7,11 +7,13 @@ class CategoriesNavBar extends StatelessWidget {
     required this.categories,
     required this.selectedCategory,
     required this.categoryOnTap,
+    required this.isCategory,
   });
   final VoidCallback? categoryIconOnTap;
   final void Function(String category) categoryOnTap;
   final List<String> categories;
   final String selectedCategory;
+  final bool isCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class CategoriesNavBar extends StatelessWidget {
               (category) => _buildCategoryTab(
                 category,
                 category == selectedCategory,
+                isCategory,
                 categoryOnTap,
               ),
             )
@@ -31,6 +34,7 @@ class CategoriesNavBar extends StatelessWidget {
   Widget _buildCategoryTab(
     String title,
     bool isSelected,
+    bool isCategory,
     void Function(String title) onTap,
   ) {
     return GestureDetector(
@@ -41,7 +45,7 @@ class CategoriesNavBar extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              color: Colors.white,
+              color: isCategory ? Colors.black : Colors.white,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
             ),
           ),
@@ -50,7 +54,7 @@ class CategoriesNavBar extends StatelessWidget {
             Container(
               height: 3,
               width: 30,
-              color: Colors.white,
+              color: isCategory ? Colors.black : Colors.white,
             ),
         ],
       ),

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class TrendingWidget extends StatelessWidget {
-  final double size; // Size of the pentagon
-  final Color color; // Color of the pentagon
+  final double size;
+  final Color color;
   final String text;
 
   const TrendingWidget({
@@ -19,64 +19,85 @@ class TrendingWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CustomPaint(
-            size: Size(size, size), // Size of the widget
-            painter: PentagonPainter(color)),
+          size: Size(size, size),
+          painter: HexagonPainter(color),
+        ),
         Center(
-            child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 10,
-            fontStyle: FontStyle.italic,
+          child: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              fontStyle: FontStyle.italic,
+            ),
           ),
-        )),
+        ),
       ],
     );
   }
 }
 
-class PentagonPainter extends CustomPainter {
-  final Color color; // Color of the pentagon
+class HexagonPainter extends CustomPainter {
+  final Color color;
 
-  PentagonPainter(this.color);
+  HexagonPainter(this.color);
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
+    final Paint paint = Paint()
       ..color = color
       ..style = PaintingStyle.fill;
 
-    // Create a path for the pentagon
-    Path path = Path();
+    final double centerX = size.width / 2;
+    final double centerY = size.height / 2;
+    final double radius = size.width / 2;
+    final double angle = 2 * pi / 6;
+    final double cornerRadius = 5.0;
 
-    double centerX = size.width / 2;
-    double centerY = size.height / 2;
-    double radius = size.width / 2;
+    final List<Offset> points = [];
 
-    // Angle for each of the pentagon's corners (360° divided by 5)
-    double angle = 2 * pi / 5;
-
-    // Start drawing the pentagon
-    for (int i = 0; i < 5; i++) {
-      double x = centerX +
-          radius *
-              cos(i * angle - pi / 2); // Subtract pi/2 for correct rotation
+    for (int i = 0; i < 6; i++) {
+      double x = centerX + radius * cos(i * angle - pi / 2);
       double y = centerY + radius * sin(i * angle - pi / 2);
-
-      if (i == 0) {
-        path.moveTo(x, y); // Move to the first point
-      } else {
-        path.lineTo(x, y); // Draw lines to the next points
-      }
+      points.add(Offset(x, y));
     }
 
-    path.close(); // Close the path to complete the pentagon
+    final Path path = Path();
 
-    // Draw the pentagon on the canvas
+    for (int i = 0; i < 6; i++) {
+      final Offset current = points[i];
+      final Offset next = points[(i + 1) % 6];
+      final Offset prev = points[(i - 1 + 6) % 6];
+
+      final Offset dirToPrev = (prev - current).normalize();
+      final Offset dirToNext = (next - current).normalize();
+
+      final Offset cornerStart = current + dirToPrev * cornerRadius;
+      final Offset cornerEnd = current + dirToNext * cornerRadius;
+
+      if (i == 0) {
+        path.moveTo(cornerStart.dx, cornerStart.dy);
+      } else {
+        path.lineTo(cornerStart.dx, cornerStart.dy);
+      }
+
+      path.quadraticBezierTo(
+          current.dx, current.dy, cornerEnd.dx, cornerEnd.dy);
+    }
+
+    path.close();
+
     canvas.drawPath(path, paint);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false; // No need to repaint
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+// Extension to normalize Offsets
+extension Normalize on Offset {
+  Offset normalize() {
+    final double length = distance;
+    return length == 0 ? this : this / length;
   }
 }

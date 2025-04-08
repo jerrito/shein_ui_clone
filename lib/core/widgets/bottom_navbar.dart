@@ -23,13 +23,14 @@ class BottomNav extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedLabelStyle: selectedLabelStyle,
-          unselectedLabelStyle: unselectedLabelStyle,
-          backgroundColor: backgroundColor,
-          currentIndex: currentIndex,
-          onTap: onTap,
-          items: items),
+        items: items,
+        type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: selectedLabelStyle,
+        unselectedLabelStyle: unselectedLabelStyle,
+        backgroundColor: backgroundColor,
+        currentIndex: currentIndex,
+        onTap: onTap,
+      ),
     );
   }
 }

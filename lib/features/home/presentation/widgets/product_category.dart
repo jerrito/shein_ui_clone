@@ -8,15 +8,17 @@ class ProductCategoryWidget extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.imagePath,
+    this.isCategory = false,
   });
   final String title, subtitle, imagePath;
+  final bool isCategory;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           height: 75,
-          width: 60,
+          width: isCategory ? 75 : 60,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.red[50],

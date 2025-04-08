@@ -31,8 +31,9 @@ class _ShopPageState extends State<ShopPage> {
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
+              toolbarHeight: 60,
               pinned: true,
-              collapsedHeight: 60,
+              collapsedHeight: 65,
               backgroundColor: _imageIndex == 0
                   ? Colors.blue
                   : _imageIndex == 1
@@ -46,6 +47,7 @@ class _ShopPageState extends State<ShopPage> {
                 background: Column(
                   children: [
                     HeaderSection(
+                      isCategory: false,
                       color: _imageIndex == 0
                           ? Colors.blue.withValues(alpha: 0.3)
                           : _imageIndex == 1
@@ -65,6 +67,7 @@ class _ShopPageState extends State<ShopPage> {
                         children: [
                           Expanded(
                             child: CategoriesNavBar(
+                              isCategory: false,
                               selectedCategory: selectedCategory,
                               categories: categories,
                               categoryIconOnTap: widget.categoryOnTap,
@@ -80,10 +83,6 @@ class _ShopPageState extends State<ShopPage> {
                         ],
                       ),
                     ),
-                    // TopCarousel(
-                    //   backgroundColor: Colors.red,
-                    // ),
-                    // ShippingAndPromoSection(),
                   ],
                 ),
               )),
@@ -91,30 +90,6 @@ class _ShopPageState extends State<ShopPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // const HeaderSection(),
-                  // Container(
-                  //   padding:
-                  //       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  //   height: 50,
-                  //   color: Colors.red,
-                  //   child: Row(
-                  //     children: [
-                  //       Expanded(
-                  //         child: CategoriesNavBar(
-                  //           selectedCategory: selectedCategory,
-                  //           categories: categories,
-                  //           categoryIconOnTap: widget.categoryOnTap,
-                  //           categoryOnTap: (string) => setState(() {
-                  //             selectedCategory = string;
-                  //           }),
-                  //         ),
-                  //       ),
-                  //       GestureDetector(
-                  //           onTap: widget.categoryOnTap,
-                  //           child: const Icon(Icons.menu, color: Colors.white))
-                  //     ],
-                  //   ),
-                  // ),
                   SizedBox(
                       height: 150,
                       width: double.infinity,

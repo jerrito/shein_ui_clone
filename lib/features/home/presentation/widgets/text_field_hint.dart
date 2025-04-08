@@ -8,6 +8,7 @@ class VerticalTextCarousel extends StatefulWidget {
   final Duration animationDuration; // Duration of the slide animation
   final TextStyle? textStyle;
   final Curve curve; // Animation curve
+  final bool isCategory;
 
   const VerticalTextCarousel({
     super.key,
@@ -15,7 +16,8 @@ class VerticalTextCarousel extends StatefulWidget {
     this.duration = const Duration(seconds: 3),
     this.animationDuration = const Duration(milliseconds: 500),
     this.textStyle,
-    this.curve = Curves.easeInOut, // Default animation curve
+    this.curve = Curves.easeInOut,
+    required this.isCategory, // Default animation curve
   });
 
   @override
@@ -91,7 +93,9 @@ class _VerticalTextCarouselState extends State<VerticalTextCarousel> {
         // IMPORTANT: Use a unique Key for AnimatedSwitcher to detect change
         widget.texts[_currentIndex],
         key: ValueKey<int>(_currentIndex), // Key changes, triggering animation
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(
+            color: widget.isCategory ? Colors.black : Colors.white,
+            fontSize: widget.isCategory ? 14 : 14),
         textAlign: TextAlign.center,
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/widgets/bottom_navbar.dart';
+import 'package:shein_ui_clone/core/widgets/floating_action_widget.dart';
 import 'package:shein_ui_clone/features/cart/presentation/pages/cart.dart';
 import 'package:shein_ui_clone/features/category/presentation/pages/category_page.dart';
 import 'package:shein_ui_clone/features/home/presentation/pages/shop_page.dart';
@@ -49,6 +50,12 @@ class _SheinAppBaseState extends State<SheinAppBase> {
       // backgroundColor: Colors.white,
       key: scaffoldKey,
       body: IndexedStack(index: currentIndex, children: pages),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionWidget(
+        onTap: () => setState(() {
+          currentIndex = 2;
+        }),
+      ),
       bottomNavigationBar: BottomNav(
         //backgroundColor: isScrolling? Colors.transparent : VacanciesColors.baseWhite,
         pages: pages,
@@ -103,12 +110,13 @@ class _SheinAppBaseState extends State<SheinAppBase> {
           String icon, String label, bool isSelected, bool isTrend) =>
       BottomNavigationBarItem(
         icon: isTrend
-            ? TrendingWidget(
-                text: "Trends",
-                size: 45,
-                color: Colors.indigoAccent.withValues(
-                  alpha: 0.5,
-                ),
+            ? SizedBox(
+                width: 50,
+                // text: "Trends",
+                // size: 45,
+                // color: Colors.indigoAccent.withValues(
+                //   alpha: 0.5,
+                // ),
               )
             : SvgPicture.asset(
                 icon,
