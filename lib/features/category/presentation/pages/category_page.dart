@@ -8,7 +8,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  int _bottomNavIndex = 2; // Index for 'Trends'
+  final int _bottomNavIndex = 2; // Index for 'Trends'
 
   // Sample data (Replace with your actual data models and sources)
   final List<String> mainCategories = [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/core/widgets/base.dart';
-import 'package:shein_ui_clone/features/home/presentation/pages/home.dart';
 
 void main() {
   runApp(const MyApp());

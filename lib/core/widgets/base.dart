@@ -3,7 +3,7 @@ import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/widgets/bottom_navbar.dart';
 import 'package:shein_ui_clone/features/cart/presentation/pages/cart.dart';
 import 'package:shein_ui_clone/features/category/presentation/pages/category_page.dart';
-import 'package:shein_ui_clone/features/home/presentation/pages/home.dart';
+import 'package:shein_ui_clone/features/home/presentation/pages/shop_page.dart';
 import 'package:shein_ui_clone/features/profile/presentation/pages/profile_page.dart';
 import 'package:shein_ui_clone/features/trends/presentation/pages/trends_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -86,7 +86,7 @@ class _SheinAppBaseState extends State<SheinAppBase> {
 
     // pages
     pages = [
-      EcommerceHomePage(
+      ShopPage(
         categoryOnTap: () => navigateToCategories(),
       ),
       const CategoryPage(),
@@ -115,7 +115,9 @@ class _SheinAppBaseState extends State<SheinAppBase> {
                 // width: Sizes.height(context, 0.028),
                 // height: Sizes.height(context, 0.028),
                 colorFilter: ColorFilter.mode(
-                  isSelected ? Colors.black : Colors.black.withOpacity(0.5),
+                  isSelected
+                      ? Colors.black
+                      : Colors.black.withValues(alpha: 0.5),
                   isSelected ? BlendMode.srcIn : BlendMode.dstOut,
                 ),
               ),
