@@ -136,7 +136,11 @@ class _TrendsPageState extends State<TrendsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Trends Store",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontStyle: FontStyle.italic,
+            )),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -164,6 +168,7 @@ class _TrendsPageState extends State<TrendsPage> {
   // Builds a single store section Card
   Widget _buildStoreSection(Map<String, dynamic> storeData) {
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
       elevation: 1.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
@@ -311,7 +316,10 @@ class _TrendsPageState extends State<TrendsPage> {
                   width: width,
                   color: Colors.grey[200],
                   child: const Center(
-                      child: Icon(Icons.broken_image, color: Colors.grey)),
+                      child: Icon(
+                    Icons.broken_image,
+                    color: Colors.grey,
+                  )),
                 ),
               ),
             ),

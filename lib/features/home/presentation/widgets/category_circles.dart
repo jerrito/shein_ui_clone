@@ -10,9 +10,10 @@ class CategoryCircles extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Wrap(
-          spacing: 16,
+          spacing: 8,
           runSpacing: 8,
-          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.spaceBetween,
+          alignment: WrapAlignment.spaceBetween,
           crossAxisAlignment: WrapCrossAlignment.start,
           children: ProductCategoriesEnum.values
               .map((e) => ProductCategoryWidget(

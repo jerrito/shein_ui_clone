@@ -6,9 +6,11 @@ class FloatingActionWidget extends StatelessWidget {
     super.key,
     this.text = "Trends",
     this.onTap,
+    required this.isActive,
   });
   final String text;
   final VoidCallback? onTap;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class FloatingActionWidget extends StatelessWidget {
           text: text,
           size: 100,
           color: Colors.purple.withValues(
-            alpha: 0.2,
+            alpha: isActive ? 1 : 0.2,
           ),
         ),
       ),

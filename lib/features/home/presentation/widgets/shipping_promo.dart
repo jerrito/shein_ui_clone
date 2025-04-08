@@ -19,7 +19,7 @@ class ShippingPromoWidget extends StatelessWidget {
         Expanded(
           child: ShippingPromotion(
             title: 'SALE ZONE',
-            subtitle: 'Super coupons every day!',
+            subtitle: 'Super coupons day!',
             icon: Icons.sell,
           ),
         ),
@@ -63,7 +63,7 @@ class ShippingPromotion extends StatelessWidget {
                     color: Colors.brown,
                   ),
                 ),
-                const SizedBox(width: 8),
+                // const SizedBox(width: 8),
                 Icon(
                   icon,
                   color: Colors.grey[400],

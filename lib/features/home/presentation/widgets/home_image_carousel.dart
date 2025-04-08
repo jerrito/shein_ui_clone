@@ -21,9 +21,7 @@ class HomeImageCarousel extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-          Expanded(
-            child: buildSaleCard(imagePath ?? ''),
-          ),
+          buildSaleCard(imagePath ?? ''),
           const SizedBox(height: 10),
           Align(
             alignment: Alignment.bottomCenter,

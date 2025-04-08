@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/images/images.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
 
 class ProductCategoryWidget extends StatelessWidget {
   const ProductCategoryWidget({
@@ -17,11 +18,14 @@ class ProductCategoryWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 75,
-          width: isCategory ? 75 : 60,
+          height: Sizes.height(context, 0.085),
+          width: Sizes.width(
+            context,
+            isCategory ? 0.170 : 0.140,
+          ),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.red[50],
+              color: const Color.fromARGB(255, 224, 217, 217),
               image: DecorationImage(
                   image: imagePath == ''
                       ? AssetImage(Images.foodImage)

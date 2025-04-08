@@ -52,6 +52,7 @@ class _SheinAppBaseState extends State<SheinAppBase> {
       body: IndexedStack(index: currentIndex, children: pages),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionWidget(
+        isActive: currentIndex == 2,
         onTap: () => setState(() {
           currentIndex = 2;
         }),

@@ -35,10 +35,10 @@ class _ShopPageState extends State<ShopPage> {
               pinned: true,
               collapsedHeight: 65,
               backgroundColor: _imageIndex == 0
-                  ? Colors.blue
+                  ? const Color.fromARGB(255, 128, 179, 221)
                   : _imageIndex == 1
-                      ? Colors.red
-                      : Colors.green.withValues(alpha: 0.5),
+                      ? const Color.fromARGB(255, 197, 31, 20)
+                      : const Color.fromARGB(255, 18, 87, 20),
               bottom: PreferredSize(
                   preferredSize: Size(double.infinity, 50),
                   child: SizedBox.shrink()),
@@ -49,20 +49,20 @@ class _ShopPageState extends State<ShopPage> {
                     HeaderSection(
                       isCategory: false,
                       color: _imageIndex == 0
-                          ? Colors.blue.withValues(alpha: 0.3)
+                          ? const Color.fromARGB(255, 128, 179, 221)
                           : _imageIndex == 1
-                              ? Colors.red
-                              : Colors.green.withValues(alpha: 0.5),
+                              ? const Color.fromARGB(255, 197, 31, 20)
+                              : const Color.fromARGB(255, 18, 87, 20),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       height: 50,
                       color: _imageIndex == 0
-                          ? Colors.blue
+                          ? const Color.fromARGB(255, 128, 179, 221)
                           : _imageIndex == 1
-                              ? Colors.red
-                              : Colors.green.withValues(alpha: 0.5),
+                              ? const Color.fromARGB(255, 197, 31, 20)
+                              : const Color.fromARGB(255, 18, 87, 20),
                       child: Row(
                         children: [
                           Expanded(
@@ -127,7 +127,7 @@ class _ShopPageState extends State<ShopPage> {
                             );
                           })),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
                     child: Column(
                       children: [
                         SizedBox(

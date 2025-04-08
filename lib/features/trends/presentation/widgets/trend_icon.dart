@@ -28,6 +28,7 @@ class TrendingWidget extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
+              color: Colors.white,
               fontStyle: FontStyle.italic,
             ),
           ),

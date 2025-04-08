@@ -25,7 +25,7 @@ class CouponRow extends StatelessWidget {
           _buildCoupon(
             'SPIN TO WIN',
             '',
-            'Coupons & Points',
+            'Coupons',
             Colors.pink[100]!,
             false,
           ),
@@ -70,8 +70,10 @@ class CouponRow extends StatelessWidget {
               ),
             Text(
               title,
+              maxLines: 1,
               style: TextStyle(
                 fontWeight: FontWeight.w900,
+                overflow: TextOverflow.ellipsis,
                 fontSize: 18,
                 color: const Color.fromARGB(255, 233, 138, 171),
               ),
@@ -80,6 +82,7 @@ class CouponRow extends StatelessWidget {
             if (subtitle.isNotEmpty)
               Text(
                 subtitle,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 12,
                   color: Colors.black45,
