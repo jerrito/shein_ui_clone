@@ -9,45 +9,38 @@ class CouponRow extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(
         vertical: 8,
-        horizontal: 10,
+        horizontal: 8,
       ),
-      color: Colors.pink[100],
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Colors.pink[100]!,
+            Colors.pink[50]!,
+          ])),
       height: 83,
       child: Row(
         children: [
+          _buildCoupon('GET \$3 OFF', 'on your first order', 'CODE: SH3',
+              Colors.pink[100]!, false, ''),
           _buildCoupon(
-            'GET \$3 OFF',
-            'on your first order',
-            'CODE: SH3',
-            Colors.pink[100]!,
-            false,
-          ),
-          _buildCoupon(
-            'SPIN TO WIN',
-            '',
-            'Coupons',
-            Colors.pink[100]!,
-            false,
-          ),
+              'SPIN TO WIN', '', 'Coupons', Colors.pink[100]!, false, ''),
           _buildCoupon(
             '15% OFF',
-            'BUY \$100 GET',
             'New users only',
+            '',
             Colors.pink[100]!,
             true,
+            'BUY \$100 GET',
           ),
         ],
       ),
     );
   }
 
-  Widget _buildCoupon(
-    String title,
-    String subtitle,
-    String code,
-    Color color,
-    bool isDiscount,
-  ) {
+  Widget _buildCoupon(String title, String subtitle, String code, Color color,
+      bool isDiscount, String? subtitle2) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -59,9 +52,9 @@ class CouponRow extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (isDiscount)
+            if (subtitle2 != null && subtitle2.isNotEmpty)
               Text(
-                subtitle,
+                subtitle2,
                 style: const TextStyle(
                   fontSize: 14,
                   wordSpacing: 2.0,

@@ -36,13 +36,16 @@ class ProductCategoryWidget extends StatelessWidget {
         ),
         // const SizedBox(height: 6),
         SizedBox(
-          width: 60,
+          width: Sizes.width(
+            context,
+            isCategory ? 0.170 : 0.165,
+          ),
           child: Text(
             title,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 10,
+            style: TextStyle(
+              fontSize: title.length >= 10 ? 11 : 12,
               fontWeight: FontWeight.w500,
               overflow: TextOverflow.ellipsis,
             ),

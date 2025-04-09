@@ -79,7 +79,9 @@ class _VerticalTextCarouselState extends State<VerticalTextCarousel> {
           begin: 0, // Start below the view
           end: 1, // End at the center
         ).animate(CurvedAnimation(
-                parent: animation, curve: widget.curve) // Apply curve
+          parent: animation,
+          curve: widget.curve,
+        ) // Apply curve
             );
 
         // AnimatedSwitcher fades out the old child by default.
@@ -94,9 +96,9 @@ class _VerticalTextCarouselState extends State<VerticalTextCarousel> {
         widget.texts[_currentIndex],
         key: ValueKey<int>(_currentIndex), // Key changes, triggering animation
         style: TextStyle(
-            color: widget.isCategory ? Colors.black : Colors.white,
+            color: widget.isCategory ? Colors.black : Colors.black38,
             fontSize: widget.isCategory ? 14 : 14),
-        textAlign: TextAlign.center,
+        // textAlign: TextAlign.center,
       ),
     );
   }

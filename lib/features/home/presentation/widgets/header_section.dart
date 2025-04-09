@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/text_field_hint.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -14,27 +16,35 @@ class HeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: color,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Row(
         children: [
           Icon(Icons.mail_outline,
               color: isCategory ? Colors.black : Colors.white),
           const SizedBox(width: 12),
+          Badge(
+            backgroundColor: Colors.red,
+            child: SvgPicture.asset(Svgs.archiveSVG,
+                width: 20,
+                height: 20,
+                colorFilter: ColorFilter.mode(
+                  isCategory ? Colors.black : Colors.white,
+                  BlendMode.srcIn,
+                )),
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Container(
               height: 36,
               decoration: BoxDecoration(
-                color: isCategory
-                    ? Colors.grey[200]
-                    : Colors.white.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(4),
+                color: isCategory ? Colors.grey[200] : Colors.white,
+                borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
                 children: [
                   const SizedBox(width: 8),
-                  Icon(Icons.search,
-                      color: isCategory ? Colors.black : Colors.white70),
-                  const SizedBox(width: 8),
+
+                  // const SizedBox(width: 8),
                   SizedBox(
                     height: 30,
                     // width: 200,
@@ -52,9 +62,32 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  Icon(Icons.camera_alt_outlined,
-                      color: isCategory ? Colors.black : Colors.white70),
-                  const SizedBox(width: 8),
+                  Icon(
+                    Icons.camera_alt_outlined,
+                    color: isCategory ? Colors.black : Colors.black26,
+                  ),
+                  const SizedBox(width: 6),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 2,
+                      horizontal: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: color,
+                    ),
+                    child: Transform.scale(
+                      scale: 0.9,
+                      child: SvgPicture.asset(Svgs.searchSVG,
+                          width: 20,
+                          height: 20,
+                          colorFilter: ColorFilter.mode(
+                            isCategory ? Colors.black : Colors.white,
+                            BlendMode.srcIn,
+                          )),
+                    ),
+                  ),
+                  const SizedBox(width: 4),
                 ],
               ),
             ),

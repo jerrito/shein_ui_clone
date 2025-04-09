@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
 
 class CategoriesNavBar extends StatelessWidget {
   const CategoriesNavBar({
@@ -17,18 +18,21 @@ class CategoriesNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: categories
-            .map(
-              (category) => _buildCategoryTab(
-                category,
-                category == selectedCategory,
-                isCategory,
-                categoryOnTap,
-              ),
-            )
-            .toList());
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: categories
+              .map(
+                (category) => _buildCategoryTab(
+                  category,
+                  category == selectedCategory,
+                  isCategory,
+                  categoryOnTap,
+                ),
+              )
+              .toList()),
+    );
   }
 
   Widget _buildCategoryTab(
@@ -37,26 +41,29 @@ class CategoriesNavBar extends StatelessWidget {
     bool isCategory,
     void Function(String title) onTap,
   ) {
-    return GestureDetector(
-      onTap: () => onTap(title),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: isCategory ? Colors.black : Colors.white,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+      child: GestureDetector(
+        onTap: () => onTap(title),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: isCategory ? Colors.black : Colors.white,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          if (isSelected)
-            Container(
-              height: 3,
-              width: 30,
-              color: isCategory ? Colors.black : Colors.white,
-            ),
-        ],
+            const SizedBox(height: 4),
+            if (isSelected)
+              Container(
+                height: 3,
+                width: title.length * 8,
+                color: isCategory ? Colors.black : Colors.white,
+              ),
+          ],
+        ),
       ),
     );
   }

@@ -11,7 +11,7 @@ class ShippingPromoWidget extends StatelessWidget {
         Expanded(
           child: ShippingPromotion(
             title: 'Free Shipping',
-            subtitle: 'On orders of \$69.00+',
+            subtitle: 'On orders of \$690.00+',
             icon: Icons.local_shipping,
           ),
         ),
@@ -49,7 +49,7 @@ class ShippingPromotion extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w700,
                 fontSize: 14,
               ),
             ),
@@ -59,7 +59,7 @@ class ShippingPromotion extends StatelessWidget {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: Colors.brown,
                   ),
                 ),

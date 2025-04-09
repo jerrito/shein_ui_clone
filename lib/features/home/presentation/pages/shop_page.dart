@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shein_ui_clone/assets/svgs.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_circles.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_nav_bar.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/coupon_discount.dart';
@@ -22,7 +25,24 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   final CarouselSliderController controller = CarouselSliderController();
-  List<String> categories = ["All", "Women", "Kids", "Men", "Curve", "Home"];
+  List<String> categories = [
+    "All",
+    "Women",
+    "Shoes",
+    "Kids",
+    "Men",
+    "Curve",
+    "Home",
+    "Jewelry & Accs",
+    "Lingerie & Sleep",
+    "Bags",
+    "Sports",
+    "Electronics",
+    "Toys",
+    "Office",
+    "Appliances",
+    "Pets",
+  ];
   String selectedCategory = 'All';
   int _imageIndex = 0;
   @override
@@ -55,8 +75,11 @@ class _ShopPageState extends State<ShopPage> {
                               : const Color.fromARGB(255, 18, 87, 20),
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
+                      padding: const EdgeInsets.only(
+                        right: 8,
+                        top: 8,
+                        bottom: 8,
+                      ),
                       height: 50,
                       color: _imageIndex == 0
                           ? const Color.fromARGB(255, 128, 179, 221)
@@ -64,8 +87,10 @@ class _ShopPageState extends State<ShopPage> {
                               ? const Color.fromARGB(255, 197, 31, 20)
                               : const Color.fromARGB(255, 18, 87, 20),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Expanded(
+                          SizedBox(
+                            width: Sizes.width(context, 0.86),
                             child: CategoriesNavBar(
                               isCategory: false,
                               selectedCategory: selectedCategory,
@@ -76,10 +101,21 @@ class _ShopPageState extends State<ShopPage> {
                               }),
                             ),
                           ),
+                          // Spacer(),
+                          SizedBox(
+                            height: 30,
+                            child: VerticalDivider(
+                              thickness: 0.5,
+                              color: Colors.grey[200],
+                            ),
+                          ),
                           GestureDetector(
                               onTap: widget.categoryOnTap,
-                              child:
-                                  const Icon(Icons.menu, color: Colors.white))
+                              child: SvgPicture.asset(Svgs.menuSVG,
+                                  colorFilter: ColorFilter.mode(
+                                      Colors.white, BlendMode.srcIn)
+                                  // size: 26,
+                                  ))
                         ],
                       ),
                     ),

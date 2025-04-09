@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/images/images.dart';
 import 'package:shein_ui_clone/core/enums/super_deals.dart';
+import 'package:shein_ui_clone/features/home/presentation/widgets/thuner_d_widget.dart';
 
 class SuperDealsSection extends StatelessWidget {
   const SuperDealsSection({super.key});
@@ -13,22 +14,31 @@ class SuperDealsSection extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Super',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(Icons.flash_on, color: Colors.orange),
-                    Text(
-                      'Deals',
+                    // const Icon(Icons.flash_on, color: Colors.orange),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: DLogoWidget(
+                        size: 24.0, // Adjust the overall size of the logo
+                        // boltColor: Colors.amber, // Color of the thunderbolt
+                        curveColor: Colors.black, // Color of the D's curve
+                        // curveStrokeWidth: 20.0, // Thickness of the D's curve
+                      ),
+                    ),
+                    const Text(
+                      'eals',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -40,7 +50,7 @@ class SuperDealsSection extends StatelessWidget {
                   children: const [
                     Text(
                       'View more',
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 12),
                     ),
                     Icon(Icons.chevron_right),
                   ],
@@ -59,21 +69,17 @@ class SuperDealsSection extends StatelessWidget {
                           e.url,
                           e.amount,
                         ))
-                    .toList()
-
-                // _buildDealCard('-53%', 'assets/deal1.png'),
-                // _buildDealCard('-20%', 'assets/deal2.png'),
-                // _buildDealCard('-35%', 'assets/deal3.png'),
-                // _buildDealCard('-15%', 'assets/deal4.png'),
-                // ],
-                ),
+                    .toList()),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildDealCard(String discount, String imagePath, amount) {
+  Widget _buildDealCard(String discount, String imagePath, double amount) {
+    List<String> parts = amount.toStringAsFixed(2).split('.');
+    String whole = parts[0]; // '42'
+    String fraction = parts[1];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -147,15 +153,22 @@ class SuperDealsSection extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepOrangeAccent,
+                  color: Colors.red,
                 ),
                 children: [
                   TextSpan(
-                    text: '$amount',
+                      text: whole,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      )),
+                  TextSpan(
+                    text: '.$fraction',
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: 12,
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.red,
                     ),
                   )
                 ]),
