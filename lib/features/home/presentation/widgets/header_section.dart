@@ -22,16 +22,17 @@ class HeaderSection extends StatelessWidget {
           Icon(Icons.mail_outline,
               color: isCategory ? Colors.black : Colors.white),
           const SizedBox(width: 12),
-          Badge(
-            backgroundColor: Colors.red,
-            child: SvgPicture.asset(Svgs.archiveSVG,
-                width: 20,
-                height: 20,
-                colorFilter: ColorFilter.mode(
-                  isCategory ? Colors.black : Colors.white,
-                  BlendMode.srcIn,
-                )),
-          ),
+          if (!isCategory)
+            Badge(
+              backgroundColor: Colors.red,
+              child: SvgPicture.asset(Svgs.archiveSVG,
+                  width: 20,
+                  height: 20,
+                  colorFilter: ColorFilter.mode(
+                    isCategory ? Colors.black : Colors.white,
+                    BlendMode.srcIn,
+                  )),
+            ),
           const SizedBox(width: 12),
           Expanded(
             child: Container(
@@ -68,13 +69,13 @@ class HeaderSection extends StatelessWidget {
                   ),
                   const SizedBox(width: 6),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 2,
-                      horizontal: 8,
+                    padding: EdgeInsets.symmetric(
+                      vertical: isCategory ? 10 : 2,
+                      horizontal: isCategory ? 12 : 8,
                     ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: color,
+                      borderRadius: BorderRadius.circular(isCategory ? 2 : 12),
+                      color: isCategory ? Colors.black : color,
                     ),
                     child: Transform.scale(
                       scale: 0.9,
@@ -82,12 +83,12 @@ class HeaderSection extends StatelessWidget {
                           width: 20,
                           height: 20,
                           colorFilter: ColorFilter.mode(
-                            isCategory ? Colors.black : Colors.white,
+                            Colors.white,
                             BlendMode.srcIn,
                           )),
                     ),
                   ),
-                  const SizedBox(width: 4),
+                  SizedBox(width: isCategory ? 0 : 4),
                 ],
               ),
             ),

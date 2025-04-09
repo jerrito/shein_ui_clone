@@ -16,8 +16,10 @@ class ShopPage extends StatefulWidget {
   const ShopPage({
     super.key,
     this.categoryOnTap,
+    required this.categories,
   });
   final VoidCallback? categoryOnTap;
+  final List<String> categories;
 
   @override
   State<ShopPage> createState() => _ShopPageState();
@@ -25,40 +27,27 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   final CarouselSliderController controller = CarouselSliderController();
-  List<String> categories = [
-    "All",
-    "Women",
-    "Shoes",
-    "Kids",
-    "Men",
-    "Curve",
-    "Home",
-    "Jewelry & Accs",
-    "Lingerie & Sleep",
-    "Bags",
-    "Sports",
-    "Electronics",
-    "Toys",
-    "Office",
-    "Appliances",
-    "Pets",
-  ];
+
   String selectedCategory = 'All';
   int _imageIndex = 0;
+  Color redColor = const Color.fromARGB(175, 225, 0, 42);
+  Color greenColor = const Color.fromARGB(255, 46, 119, 58);
+  Color blueLightColor = const Color.fromARGB(255, 153, 220, 224);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
-              toolbarHeight: 60,
+              toolbarHeight: 55,
               pinned: true,
-              collapsedHeight: 65,
+              collapsedHeight: 60,
               backgroundColor: _imageIndex == 0
-                  ? const Color.fromARGB(255, 128, 179, 221)
+                  ? blueLightColor
                   : _imageIndex == 1
-                      ? const Color.fromARGB(255, 197, 31, 20)
-                      : const Color.fromARGB(255, 18, 87, 20),
+                      ? redColor
+                      : greenColor,
               bottom: PreferredSize(
                   preferredSize: Size(double.infinity, 50),
                   child: SizedBox.shrink()),
@@ -69,10 +58,10 @@ class _ShopPageState extends State<ShopPage> {
                     HeaderSection(
                       isCategory: false,
                       color: _imageIndex == 0
-                          ? const Color.fromARGB(255, 128, 179, 221)
+                          ? blueLightColor
                           : _imageIndex == 1
-                              ? const Color.fromARGB(255, 197, 31, 20)
-                              : const Color.fromARGB(255, 18, 87, 20),
+                              ? redColor
+                              : greenColor,
                     ),
                     Container(
                       padding: const EdgeInsets.only(
@@ -82,10 +71,10 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       height: 50,
                       color: _imageIndex == 0
-                          ? const Color.fromARGB(255, 128, 179, 221)
+                          ? blueLightColor
                           : _imageIndex == 1
-                              ? const Color.fromARGB(255, 197, 31, 20)
-                              : const Color.fromARGB(255, 18, 87, 20),
+                              ? redColor
+                              : greenColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -94,7 +83,7 @@ class _ShopPageState extends State<ShopPage> {
                             child: CategoriesNavBar(
                               isCategory: false,
                               selectedCategory: selectedCategory,
-                              categories: categories,
+                              categories: widget.categories,
                               categoryIconOnTap: widget.categoryOnTap,
                               categoryOnTap: (string) => setState(() {
                                 selectedCategory = string;
@@ -127,7 +116,7 @@ class _ShopPageState extends State<ShopPage> {
               child: Column(
                 children: [
                   SizedBox(
-                      height: 150,
+                      height: 170,
                       width: double.infinity,
                       child: CarouselSlider.builder(
                           carouselController: controller,
@@ -138,7 +127,7 @@ class _ShopPageState extends State<ShopPage> {
                                 _imageIndex = index;
                               });
                             },
-                            autoPlay: true,
+                            // autoPlay: true,
                             viewportFraction: 1,
                           ),
                           itemBuilder: (context, index, ins) {

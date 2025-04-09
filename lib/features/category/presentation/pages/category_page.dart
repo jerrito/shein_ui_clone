@@ -5,24 +5,16 @@ import 'package:shein_ui_clone/features/home/presentation/widgets/header_section
 import 'package:shein_ui_clone/features/home/presentation/widgets/product_category.dart';
 
 class CategoryPage extends StatefulWidget {
-  const CategoryPage({super.key});
+  const CategoryPage({super.key, required this.categories});
+  final List<String> categories;
 
   @override
   State<CategoryPage> createState() => _CategoryPageState();
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  List<String> categories = [
-    "All",
-    "Women",
-    "Curve",
-    "Kids",
-    "Men",
-    "Home",
-    "Beauty",
-    "Electronics"
-  ];
   String selectedCategory = 'All';
+  String selectedSideCategory = 'Just For You';
 
   final List<String> sideCategories = [
     "Just For You",
@@ -52,6 +44,7 @@ class _CategoryPageState extends State<CategoryPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
         title: HeaderSection(
           isCategory: true,
           color: Colors.transparent, // Background color for the header
@@ -64,7 +57,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 child: CategoriesNavBar(
                   isCategory: true,
                   selectedCategory: selectedCategory,
-                  categories: categories,
+                  categories: widget.categories,
                   categoryIconOnTap: null,
                   categoryOnTap: (string) => setState(() {
                     selectedCategory = string;
@@ -84,23 +77,37 @@ class _CategoryPageState extends State<CategoryPage> {
             child: ListView.builder(
               itemCount: sideCategories.length,
               itemBuilder: (context, index) {
-                bool isSelected =
-                    index == 0; // Example: Highlight "Just For You"
-                return Container(
-                    color: isSelected ? Colors.white : Colors.transparent,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 8.0),
-                      child: Text(
-                        sideCategories[index],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight:
-                              isSelected ? FontWeight.bold : FontWeight.normal,
-                          color: isSelected ? Colors.black : Colors.grey[700],
+                bool isSelected = selectedSideCategory ==
+                    sideCategories[index]; // Example: Highlight "Just For You"
+                return GestureDetector(
+                  onTap: () => setState(() {
+                    selectedSideCategory = sideCategories[index];
+                  }),
+                  child: Container(
+                      decoration: BoxDecoration(
+                          color: isSelected ? Colors.white : Colors.transparent,
+                          border: Border(
+                              left: BorderSide(
+                            color:
+                                isSelected ? Colors.black : Colors.transparent,
+                            width: 3, // Border width
+                            style: BorderStyle.solid,
+                          ))),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 8.0),
+                        child: Text(
+                          sideCategories[index],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            color: isSelected ? Colors.black : Colors.grey[700],
+                          ),
                         ),
-                      ),
-                    ));
+                      )),
+                );
               },
             ),
           ),

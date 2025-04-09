@@ -95,9 +95,8 @@ class _SheinAppBaseState extends State<SheinAppBase> {
     // pages
     pages = [
       ShopPage(
-        categoryOnTap: () => navigateToCategories(),
-      ),
-      const CategoryPage(),
+          categoryOnTap: () => navigateToCategories(), categories: categories),
+      CategoryPage(categories: categories),
       const TrendsPage(),
       const Cart(),
       const ProfilePage(),
@@ -106,6 +105,24 @@ class _SheinAppBaseState extends State<SheinAppBase> {
     super.initState();
   }
 
+  List<String> categories = [
+    "All",
+    "Women",
+    "Shoes",
+    "Kids",
+    "Men",
+    "Curve",
+    "Home",
+    "Jewelry & Accs",
+    "Lingerie & Sleep",
+    "Bags",
+    "Sports",
+    "Electronics",
+    "Toys",
+    "Office",
+    "Appliances",
+    "Pets",
+  ];
 // nav bar item
   BottomNavigationBarItem barItem(
           String icon, String label, bool isSelected, bool isTrend) =>

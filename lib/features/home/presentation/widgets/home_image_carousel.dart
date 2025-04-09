@@ -16,30 +16,29 @@ class HomeImageCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      width: double.infinity,
-      child: Stack(
-        children: [
-          buildSaleCard(imagePath ?? ''),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.bottomCenter,
+    return Stack(
+      children: [
+        buildSaleCard(imagePath ?? ''),
+        const SizedBox(height: 10),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: dotWidgets,
             ),
           ),
-          const SizedBox(height: 5),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              description ?? 'Daily Drops | Bestsellers | Special Prices',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
+        ),
+        const SizedBox(height: 5),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            description ?? 'Daily Drops | Bestsellers | Special Prices',
+            style: TextStyle(color: Colors.white, fontSize: 12),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
+import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_image_widget.dart';
 
 class TrendsPage extends StatefulWidget {
   const TrendsPage({super.key});
@@ -134,33 +136,30 @@ class _TrendsPageState extends State<TrendsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Trends Store",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              fontStyle: FontStyle.italic,
-            )),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-              // Handle search action
-            },
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: Sizes.height(context, 0.35),
+            flexibleSpace: TrendImageWidget(
+              color: Colors.amber,
+              image:
+                  'https://m.media-amazon.com/images/I/51-YNLnErVL._AC_SL1000_.jpg',
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(
+                  top: 8.0, bottom: 16.0), // Add padding top/bottom
+              itemCount: trendingStoresData.length,
+              itemBuilder: (context, index) {
+                final storeData = trendingStoresData[index];
+                return _buildStoreSection(storeData);
+              },
+            ),
           ),
         ],
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 1.0, // Subtle shadow
-      ),
-      body: ListView.builder(
-        padding: const EdgeInsets.only(
-            top: 8.0, bottom: 16.0), // Add padding top/bottom
-        itemCount: trendingStoresData.length,
-        itemBuilder: (context, index) {
-          final storeData = trendingStoresData[index];
-          return _buildStoreSection(storeData);
-        },
       ),
     );
   }
