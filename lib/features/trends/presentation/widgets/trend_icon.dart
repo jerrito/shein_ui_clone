@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TrendingWidget extends StatelessWidget {
   final double size;
-  final Color color;
+  final Color color, textColor;
   final String text;
 
   const TrendingWidget({
@@ -11,6 +11,7 @@ class TrendingWidget extends StatelessWidget {
     required this.size,
     required this.color,
     required this.text,
+    required this.textColor,
   });
 
   @override
@@ -25,10 +26,10 @@ class TrendingWidget extends StatelessWidget {
         Center(
           child: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
-              color: Colors.white,
+              color: textColor,
               fontStyle: FontStyle.italic,
             ),
           ),

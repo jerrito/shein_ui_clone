@@ -25,6 +25,7 @@ class FloatingActionWidget extends StatelessWidget {
         child: TrendingWidget(
           text: text,
           size: 100,
+          textColor: isActive ? Colors.white : Colors.purple,
           color: Colors.purple.withValues(
             alpha: isActive ? 1 : 0.2,
           ),

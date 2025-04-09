@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/core/widgets/buttons/default_button.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+  const Cart({super.key, this.categoryOnTap});
+  final VoidCallback? categoryOnTap;
 
   @override
   State<Cart> createState() => _CartState();
@@ -107,7 +108,7 @@ class _CartState extends State<Cart> {
 
                   DefaultButton(
                     isProfile: true,
-                    onPressed: () {},
+                    onPressed: widget.categoryOnTap,
                     text: "Shop by Category",
                   )
                 ],

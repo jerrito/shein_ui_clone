@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/images/images.dart';
 import 'package:shein_ui_clone/core/enums/super_deals.dart';
+import 'package:shein_ui_clone/core/widgets/amount_widget.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/thuner_d_widget.dart';
 
 class SuperDealsSection extends StatelessWidget {
@@ -145,34 +146,9 @@ class SuperDealsSection extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 3.0),
-          child: RichText(
-            text: TextSpan(
-                text: "\$",
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
-                ),
-                children: [
-                  TextSpan(
-                      text: whole,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red,
-                      )),
-                  TextSpan(
-                    text: '.$fraction',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
-                  )
-                ]),
-          ),
+        AmountWidget(
+          whole: whole,
+          fraction: fraction,
         ),
       ],
     );

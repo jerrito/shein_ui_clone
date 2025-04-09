@@ -127,7 +127,7 @@ class _ShopPageState extends State<ShopPage> {
                                 _imageIndex = index;
                               });
                             },
-                            // autoPlay: true,
+                            autoPlay: true,
                             viewportFraction: 1,
                           ),
                           itemBuilder: (context, index, ins) {

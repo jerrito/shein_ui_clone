@@ -98,7 +98,9 @@ class _SheinAppBaseState extends State<SheinAppBase> {
           categoryOnTap: () => navigateToCategories(), categories: categories),
       CategoryPage(categories: categories),
       const TrendsPage(),
-      const Cart(),
+      Cart(
+        categoryOnTap: () => navigateToCategories(),
+      ),
       const ProfilePage(),
     ];
 

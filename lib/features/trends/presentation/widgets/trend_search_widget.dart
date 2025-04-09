@@ -3,14 +3,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shein_ui_clone/assets/svgs.dart';
 
 class TrendSearchWidget extends StatelessWidget {
-  const TrendSearchWidget({super.key});
+  const TrendSearchWidget({
+    super.key,
+    this.color,
+  });
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 36,
       decoration: BoxDecoration(
-        color: Colors.white54,
+        color: color ?? Colors.white54,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

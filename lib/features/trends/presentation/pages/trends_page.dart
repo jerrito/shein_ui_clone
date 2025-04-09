@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_image_widget.dart';
+import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_search_widget.dart';
 
 class TrendsPage extends StatefulWidget {
   const TrendsPage({super.key});
@@ -133,18 +134,70 @@ final List<Map<String, dynamic>> trendingStoresData = [
 // --- End Sample Data ---
 
 class _TrendsPageState extends State<TrendsPage> {
+  final ScrollController _scrollController = ScrollController();
+  bool _showCompact = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  void _scrollListener() {
+    print(_scrollController.offset);
+    if (_scrollController.offset > 220 && !_showCompact) {
+      setState(() => _showCompact = true);
+    } else if (_scrollController.offset <= 220 && _showCompact) {
+      setState(() => _showCompact = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        controller: _scrollController,
         slivers: [
           SliverAppBar(
-            expandedHeight: Sizes.height(context, 0.35),
-            flexibleSpace: TrendImageWidget(
-              color: Colors.amber,
-              image:
-                  'https://m.media-amazon.com/images/I/51-YNLnErVL._AC_SL1000_.jpg',
-            ),
+            backgroundColor: _showCompact ? Colors.black : Colors.transparent,
+            pinned: true,
+            toolbarHeight: 50,
+            collapsedHeight: 55,
+            expandedHeight: Sizes.height(context, 0.4),
+            flexibleSpace: _showCompact
+                ? SafeArea(
+                    child: Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 10,
+                      ),
+                      color: Colors.black,
+                      child: SizedBox(
+                        width: Sizes.width(context, 0.75),
+                        height: 50,
+                        child: TrendSearchWidget(
+                          color: Colors.white,
+                          // Background color for the header
+                        ),
+                      ),
+                    ),
+                  )
+                : TrendImageWidget(
+                    risingPercentage: '22',
+                    daysLeft: "5 days left",
+                    hashTag: 'Lace Accessor',
+                    color: Colors.amber,
+                    image:
+                        'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
+                  ),
           ),
           SliverToBoxAdapter(
             child: ListView.builder(
