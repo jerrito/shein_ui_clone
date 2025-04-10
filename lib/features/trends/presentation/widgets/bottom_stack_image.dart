@@ -19,8 +19,8 @@ class BottomStackImage extends StatelessWidget {
     String whole = parts[0]; // '42'
     String fraction = parts[1];
     return Container(
-      width: Sizes.width(context, 0.25),
-      height: Sizes.height(context, 0.15),
+      width: Sizes.width(context, 0.2),
+      height: Sizes.height(context, 0.11),
       margin: EdgeInsets.only(bottom: 10),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -30,7 +30,7 @@ class BottomStackImage extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: Sizes.height(context, 0.12),
+                height: Sizes.height(context, 0.08),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
@@ -49,10 +49,10 @@ class BottomStackImage extends StatelessWidget {
                   child: Container(
                       padding: EdgeInsets.symmetric(
                         // vertical: Sizes.height(context, 0.005),
-                        horizontal: Sizes.width(context, 0.01),
+                        horizontal: Sizes.width(context, 0.005),
                       ),
                       height: Sizes.height(context, 0.032),
-                      width: Sizes.width(context, 0.15),
+                      width: Sizes.width(context, 0.14),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(99),
@@ -81,9 +81,7 @@ class BottomStackImage extends StatelessWidget {
               child: Text(
                 data,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12
-                ),
+                style: TextStyle(fontSize: 12),
               ),
             ),
           )

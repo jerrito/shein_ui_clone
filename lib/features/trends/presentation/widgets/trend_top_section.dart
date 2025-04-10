@@ -15,7 +15,7 @@ class TrendTopSection extends StatelessWidget {
         horizontal: 5,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "Trends Store",
@@ -25,21 +25,21 @@ class TrendTopSection extends StatelessWidget {
               fontStyle: FontStyle.italic,
             ),
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: Sizes.width(context, 0.45),
-                child: TrendSearchWidget(
-                    // Background color for the header
-                    ),
-              ),
-              SizedBox(width: Sizes.width(context, 0.02)),
-              Icon(
-                Icons.favorite_border,
-                color: Colors.black,
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     SizedBox(
+          //       width: Sizes.width(context, 0.45),
+          //       child: TrendSearchWidget(
+          //           // Background color for the header
+          //           ),
+          //     ),
+          //     SizedBox(width: Sizes.width(context, 0.02)),
+          //     Icon(
+          //       Icons.favorite_border,
+          //       color: Colors.black,
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

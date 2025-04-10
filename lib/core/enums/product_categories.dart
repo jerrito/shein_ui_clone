@@ -1,20 +1,26 @@
 enum ProductCategoriesEnum {
   women(
-      url:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNChQTakmM69ZrSBNk2ebHodTSOmsD21UUw&s',
-      name: 'Women'),
+    url:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtNChQTakmM69ZrSBNk2ebHodTSOmsD21UUw&s',
+    name: 'Women',
+    amount: 22.44,
+  ),
   curve(
       url:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3LWJxuG2nTtUAOkRm21BLd_Br2Qjmi9ohnQ&s',
-      name: 'Curve'),
+      name: 'Curve',
+      amount: 33.32),
   kids(
       url:
           'https://images-cdn.ubuy.co.in/6679254c43a032738e5723ef-girls-dress-pageant-princess-tulle-dress.jpg',
-      name: 'Kids'),
+      name: 'Kids',
+      amount: 99.63),
   men(
-      url:
-          'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
-      name: 'Men'),
+    url:
+        'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
+    name: 'Men',
+    amount: 44.10,
+  ),
   sports(
       url: 'https://m.media-amazon.com/images/I/51-YNLnErVL._AC_SL1000_.jpg',
       name: 'Sports'),
@@ -60,5 +66,10 @@ enum ProductCategoriesEnum {
       name: 'Activewear');
 
   final String name, url;
-  const ProductCategoriesEnum({required this.name, required this.url});
+  final double? amount;
+  const ProductCategoriesEnum({
+    required this.name,
+    required this.url,
+    this.amount,
+  });
 }

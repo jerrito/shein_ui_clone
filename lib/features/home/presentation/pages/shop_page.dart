@@ -31,12 +31,14 @@ class _ShopPageState extends State<ShopPage> {
   String selectedCategory = 'All';
   int _imageIndex = 0;
   Color redColor = const Color.fromARGB(192, 246, 69, 79);
-  Color greenColor = const Color.fromARGB(255, 71, 107, 136);
-  Color blueLightColor = const Color.fromARGB(255, 166, 202, 227);
+  Color greenColor = const Color.fromARGB(255, 193, 220, 234);
+  Color blueLightColor = const Color.fromARGB(255, 181, 207, 236);
+  Color skyColor = const Color.fromARGB(255, 64, 137, 206);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
+      // backgroundColor: Colors.transparent,
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
@@ -44,10 +46,12 @@ class _ShopPageState extends State<ShopPage> {
               pinned: true,
               collapsedHeight: 60,
               backgroundColor: _imageIndex == 0
-                  ? blueLightColor
+                  ? greenColor
                   : _imageIndex == 1
                       ? redColor
-                      : greenColor,
+                      : _imageIndex == 2
+                          ? skyColor
+                          : blueLightColor,
               bottom: PreferredSize(
                   preferredSize: Size(double.infinity, 50),
                   child: SizedBox.shrink()),
@@ -58,10 +62,12 @@ class _ShopPageState extends State<ShopPage> {
                     HeaderSection(
                       isCategory: false,
                       color: _imageIndex == 0
-                          ? blueLightColor
+                          ? greenColor
                           : _imageIndex == 1
                               ? redColor
-                              : greenColor,
+                              : _imageIndex == 2
+                                  ? skyColor
+                                  : blueLightColor,
                     ),
                     Container(
                       padding: const EdgeInsets.only(
@@ -71,10 +77,12 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       height: 50,
                       color: _imageIndex == 0
-                          ? blueLightColor
+                          ? greenColor
                           : _imageIndex == 1
                               ? redColor
-                              : greenColor,
+                              : _imageIndex == 2
+                                  ? skyColor
+                                  : blueLightColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -120,7 +128,7 @@ class _ShopPageState extends State<ShopPage> {
                       width: double.infinity,
                       child: CarouselSlider.builder(
                           carouselController: controller,
-                          itemCount: 3,
+                          itemCount: HomeMainImages.values.length,
                           options: CarouselOptions(
                             onPageChanged: (index, reason) {
                               setState(() {
@@ -159,6 +167,7 @@ class _ShopPageState extends State<ShopPage> {
                         const ShippingPromoWidget(),
                         // const CouponRow(),
                         const CategoryCircles(),
+                        SuperDealsSection(),
                         SuperDealsSection(),
                       ],
                     ),

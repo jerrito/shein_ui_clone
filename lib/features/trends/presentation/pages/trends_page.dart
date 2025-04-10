@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shein_ui_clone/core/enums/product_categories.dart';
 import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_image_widget.dart';
 import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_search_widget.dart';
@@ -18,22 +20,22 @@ final List<Map<String, dynamic>> trendingStoresData = [
     "tags": ["+ New", "Follower surge 61%"],
     "products": [
       {
-        "imageUrl": "https://via.placeholder.com/150/eeeeee/000000?text=Shoe1",
+        "imageUrl": ProductCategoriesEnum.beachwear.url,
         "sold": "100+ sold",
         "price": "\$8.68"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/e0e0e0/000000?text=Shoe2",
+        "imageUrl": ProductCategoriesEnum.bottoms.url,
         "sold": "80+ sold",
         "price": "\$15.20"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/dddddd/000000?text=Shoe3",
+        "imageUrl": ProductCategoriesEnum.curve.url,
         "sold": "100+ sold",
         "price": "\$17.01"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/cccccc/000000?text=Shoe4",
+        "imageUrl": ProductCategoriesEnum.jewelry.url,
         "sold": "200+ sold",
         "price": "\$13.77"
       },
@@ -41,27 +43,26 @@ final List<Map<String, dynamic>> trendingStoresData = [
   },
   {
     "storeName": "SHEIN BAE",
-    "storeLogoUrl":
-        "https://via.placeholder.com/40/E91E63/ffffff?text=S", // Placeholder logo
+    "storeLogoUrl": ProductCategoriesEnum.sports.url, // Placeholder logo
     "tags": ["Flas", "Follower surge 33%"],
     "products": [
       {
-        "imageUrl": "https://via.placeholder.com/150/fce4ec/000000?text=Dress1",
+        "imageUrl": ProductCategoriesEnum.sports.url,
         "sold": "40+ sold",
         "price": "\$13.00"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/f8bbd0/000000?text=Dress2",
+        "imageUrl": ProductCategoriesEnum.shoes.url,
         "sold": "60+ sold",
         "price": "\$7.29"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/f48fb1/000000?text=Dress3",
+        "imageUrl": ProductCategoriesEnum.bottoms.url,
         "sold": "20+ sold",
         "price": "\$11.90"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/f06292/000000?text=Dress4",
+        "imageUrl": ProductCategoriesEnum.women.url,
         "sold": "100+ sold",
         "price": "\$3.40"
       },
@@ -69,27 +70,26 @@ final List<Map<String, dynamic>> trendingStoresData = [
   },
   {
     "storeName": "Comfortcana",
-    "storeLogoUrl":
-        "https://via.placeholder.com/40/8BC34A/ffffff?text=C", // Placeholder logo
+    "storeLogoUrl": ProductCategoriesEnum.bags.url, // Placeholder logo
     "tags": ["Flas", "Follower surge 28%"],
     "products": [
       {
-        "imageUrl": "https://via.placeholder.com/150/c8e6c9/000000?text=Top1",
+        "imageUrl": ProductCategoriesEnum.bottoms.url,
         "sold": "#Eid Soft Pinks",
         "price": "\$11.00"
       }, // Using sold field for tag here based on screenshot
       {
-        "imageUrl": "https://via.placeholder.com/150/a5d6a7/000000?text=Top2",
+        "imageUrl": ProductCategoriesEnum.beachwear.url,
         "sold": "100+ sold",
         "price": "\$9.00"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/81c784/000000?text=Top3",
+        "imageUrl": ProductCategoriesEnum.shoes.url,
         "sold": "50+ sold",
         "price": "\$8.36"
       },
       {
-        "imageUrl": "https://via.placeholder.com/150/66bb6a/000000?text=Top4",
+        "imageUrl": ProductCategoriesEnum.home.url,
         "sold": "40+ sold",
         "price": "\$10.00"
       },
@@ -97,34 +97,25 @@ final List<Map<String, dynamic>> trendingStoresData = [
   },
   {
     "storeName": "opoee",
-    "storeLogoUrl":
-        "https://via.placeholder.com/40/03A9F4/ffffff?text=O", // Placeholder logo
+    "storeLogoUrl": ProductCategoriesEnum.curve.url, // Placeholder logo
     "tags": ["+ New", "11K Followers"],
     // This section has a different product display style in the screenshot (wider scroll)
     // We'll use the same product item structure for simplicity, but show more items
     "products": [
       {
-        "imageUrl": "https://via.placeholder.com/150/b3e5fc/000000?text=ShoeA",
+        "imageUrl": ProductCategoriesEnum.jewelry.url,
         "sold": "",
         "price": ""
       }, // No price/sold in this style's preview
       {
-        "imageUrl": "https://via.placeholder.com/150/81d4fa/000000?text=ShoeB",
+        "imageUrl": ProductCategoriesEnum.shoes.url,
         "sold": "",
-        "price": ""
+        "price": "",
       },
+      {"imageUrl": ProductCategoriesEnum.kids.url, "sold": "", "price": ""},
+      {"imageUrl": ProductCategoriesEnum.baby.url, "sold": "", "price": ""},
       {
-        "imageUrl": "https://via.placeholder.com/150/4fc3f7/000000?text=ShoeC",
-        "sold": "",
-        "price": ""
-      },
-      {
-        "imageUrl": "https://via.placeholder.com/150/29b6f6/000000?text=ShoeD",
-        "sold": "",
-        "price": ""
-      },
-      {
-        "imageUrl": "https://via.placeholder.com/150/03a9f4/000000?text=ShoeE",
+        "imageUrl": ProductCategoriesEnum.activewear.url,
         "sold": "",
         "price": ""
       },
@@ -144,7 +135,11 @@ class _TrendsPageState extends State<TrendsPage> {
   }
 
   void _scrollListener() {
-    print(_scrollController.offset);
+    print((currentOffset) / 200);
+    setState(() {
+      currentOffset = _scrollController.offset;
+    });
+    // print("naj${_scrollController.}");
     if (_scrollController.offset > 220 && !_showCompact) {
       setState(() => _showCompact = true);
     } else if (_scrollController.offset <= 220 && _showCompact) {
@@ -152,6 +147,7 @@ class _TrendsPageState extends State<TrendsPage> {
     }
   }
 
+  double currentOffset = 0;
   @override
   void dispose() {
     _scrollController.removeListener(_scrollListener);
@@ -162,26 +158,34 @@ class _TrendsPageState extends State<TrendsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          _showCompact
-              ? SliverAppBar(
-                  backgroundColor:
-                      _showCompact ? Colors.black : Colors.transparent,
-                  pinned: true,
-                  toolbarHeight: 50,
-                  collapsedHeight: 55,
-                  expandedHeight: Sizes.height(context, 0.1),
-                  flexibleSpace: _showCompact
-                      ? SafeArea(
+      body: Stack(
+        alignment: Alignment.topRight,
+        children: [
+          CustomScrollView(
+            controller: _scrollController,
+            slivers: [
+              _showCompact || currentOffset > 120
+                  ? SliverAppBar(
+                      backgroundColor:
+                          _showCompact ? Colors.black : Colors.transparent,
+                      pinned: true,
+                      toolbarHeight: 50,
+                      collapsedHeight: 55,
+                      expandedHeight: Sizes.height(context, 0.1),
+                      flexibleSpace: SafeArea(
+                        child: AnimatedOpacity(
+                          opacity:
+                              currentOffset < 199 ? (currentOffset) / 200 : 1,
+                          duration: const Duration(milliseconds: 300),
                           child: Container(
                             height: 50,
                             padding: EdgeInsets.symmetric(
                               vertical: 8,
                               horizontal: 10,
                             ),
-                            color: Colors.black,
+                            color: _showCompact
+                                ? Colors.black
+                                : Colors.transparent,
                             child: SizedBox(
                               width: Sizes.width(context, 0.75),
                               height: 50,
@@ -191,34 +195,81 @@ class _TrendsPageState extends State<TrendsPage> {
                               ),
                             ),
                           ),
-                        )
-                      : SizedBox.shrink())
-              : SliverToBoxAdapter(
-                  child: SizedBox.shrink(),
+                        ),
+                      ))
+                  : SliverToBoxAdapter(
+                      child: SizedBox.shrink(),
+                    ),
+              SliverToBoxAdapter(
+                child: CarouselSlider.builder(
+                    options: CarouselOptions(
+                      autoPlay: true,
+                      viewportFraction: 1.0,
+                      height: Sizes.height(context, 0.4),
+                    ),
+                    itemCount: 3,
+                    itemBuilder: (context, index, ind) {
+                      return TrendImageWidget(
+                        shape: index == 0
+                            ? 'hexagon'
+                            : index == 1
+                                ? 'diamond'
+                                : 'blob',
+                        risingPercentage: '${index != 0 ? index * 10 : 4}',
+                        daysLeft: "${index != 0 ? index * 2 : 2} days left",
+                        hashTag: 'Lace Accessor',
+                        color: index == 1
+                            ? const Color.fromARGB(255, 221, 226, 77)
+                            : index == 2
+                                ? const Color.fromARGB(255, 220, 116, 209)
+                                : const Color.fromARGB(255, 140, 197, 100),
+                        image: index == 0
+                            ? ProductCategoriesEnum.beachwear.url
+                            : index == 1
+                                ? ProductCategoriesEnum.bottoms.url
+                                : ProductCategoriesEnum.jewelry.url,
+                      );
+                    }),
+              ),
+              SliverToBoxAdapter(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(
+                      top: 8.0, bottom: 16.0), // Add padding top/bottom
+                  itemCount: trendingStoresData.length,
+                  itemBuilder: (context, index) {
+                    final storeData = trendingStoresData[index];
+                    return _buildStoreSection(storeData);
+                  },
                 ),
-          SliverToBoxAdapter(
-            child: TrendImageWidget(
-              risingPercentage: '22',
-              daysLeft: "5 days left",
-              hashTag: 'Lace Accessor',
-              color: Colors.amber,
-              image:
-                  'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
-            ),
+              ),
+            ],
           ),
-          SliverToBoxAdapter(
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.only(
-                  top: 8.0, bottom: 16.0), // Add padding top/bottom
-              itemCount: trendingStoresData.length,
-              itemBuilder: (context, index) {
-                final storeData = trendingStoresData[index];
-                return _buildStoreSection(storeData);
-              },
-            ),
-          ),
+          !_showCompact && currentOffset < 120
+              ? SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: Sizes.width(context, 0.3),
+                          child: TrendSearchWidget(
+                            color: Colors.white,
+                            // Background color for the header
+                          ),
+                        ),
+                        SizedBox(width: Sizes.width(context, 0.02)),
+                        Icon(
+                          Icons.favorite_border,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : SizedBox.shrink(),
         ],
       ),
     );

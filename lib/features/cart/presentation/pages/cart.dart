@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shein_ui_clone/assets/images/images.dart';
 import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/widgets/buttons/default_button.dart';
 
@@ -79,11 +80,11 @@ class _CartState extends State<Cart> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        Svgs.cartSVG,
-                        width: 60.0,
-                        height: 60.0,
-                        color: Colors.grey[600],
+                      Image.asset(
+                        Images.cartImage,
+                        width: 100.0,
+                        height: 100.0,
+                        // color: Colors.grey[600],
                       ),
                       SizedBox(
                         width: 20,
