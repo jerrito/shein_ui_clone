@@ -135,7 +135,7 @@ class _TrendsPageState extends State<TrendsPage> {
   }
 
   void _scrollListener() {
-    print((currentOffset) / 200);
+    debugPrint("${(currentOffset) / 200}");
     setState(() {
       currentOffset = _scrollController.offset;
     });

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shein_ui_clone/assets/images/images.dart';
-import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/widgets/buttons/default_button.dart';
 
 class Cart extends StatefulWidget {

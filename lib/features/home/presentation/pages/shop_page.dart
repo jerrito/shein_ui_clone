@@ -5,7 +5,6 @@ import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_circles.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_nav_bar.dart';
-import 'package:shein_ui_clone/features/home/presentation/widgets/coupon_discount.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/header_section.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/home_image_carousel.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/home_main_image.dart';

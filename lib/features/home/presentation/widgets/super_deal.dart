@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/images/images.dart';
 import 'package:shein_ui_clone/core/enums/super_deals.dart';
 import 'package:shein_ui_clone/core/widgets/amount_widget.dart';
-import 'package:shein_ui_clone/features/home/presentation/widgets/thuner_d_widget.dart';
 
 class SuperDealsSection extends StatelessWidget {
   const SuperDealsSection({super.key});

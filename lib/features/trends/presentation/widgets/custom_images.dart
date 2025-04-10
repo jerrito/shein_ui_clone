@@ -85,13 +85,13 @@ class DiamondImage extends StatelessWidget {
   final double borderWidth;
 
   const DiamondImage({
-    Key? key,
+    super.key,
     required this.size,
     required this.image,
     this.fit = BoxFit.cover,
     this.borderColor = Colors.transparent,
     this.borderWidth = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -141,13 +141,13 @@ class BlobImage extends StatelessWidget {
   final double borderWidth;
 
   const BlobImage({
-    Key? key,
+    super.key,
     required this.size,
     required this.image,
     this.fit = BoxFit.cover,
     this.borderColor = Colors.transparent,
     this.borderWidth = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
