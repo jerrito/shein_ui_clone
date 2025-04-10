@@ -81,7 +81,9 @@ class BottomStackImage extends StatelessWidget {
               child: Text(
                 data,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(),
+                style: TextStyle(
+                  fontSize: 12
+                ),
               ),
             ),
           )

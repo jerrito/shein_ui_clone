@@ -68,11 +68,13 @@ class _SheinAppBaseState extends State<SheinAppBase> {
         items: NavItems.values
             .map(
               (e) => barItem(
-                e.image,
-                e.label,
+                e.image!,
+                e.label!,
                 // navBar(context, e.label),
                 e.indexGet == currentIndex,
                 e.indexGet == 2,
+                e.indexGet == 1,
+                e.iconData,
               ),
             )
             .toList(),
@@ -126,29 +128,26 @@ class _SheinAppBaseState extends State<SheinAppBase> {
     "Pets",
   ];
 // nav bar item
-  BottomNavigationBarItem barItem(
-          String icon, String label, bool isSelected, bool isTrend) =>
+  BottomNavigationBarItem barItem(String svg, String label, bool isSelected,
+          bool isTrend, bool isCategory, IconData? iconData) =>
       BottomNavigationBarItem(
         icon: isTrend
             ? SizedBox(
                 width: 50,
-                // text: "Trends",
-                // size: 45,
-                // color: Colors.indigoAccent.withValues(
-                //   alpha: 0.5,
-                // ),
               )
-            : SvgPicture.asset(
-                icon,
-                // width: Sizes.height(context, 0.028),
-                // height: Sizes.height(context, 0.028),
-                colorFilter: ColorFilter.mode(
-                  isSelected
-                      ? Colors.black
-                      : Colors.black.withValues(alpha: 0.5),
-                  isSelected ? BlendMode.srcIn : BlendMode.dstOut,
-                ),
-              ),
+            : !isSelected || isCategory
+                ? SvgPicture.asset(
+                    svg,
+                    // width: Sizes.height(context, 0.028),
+                    // height: Sizes.height(context, 0.028),
+                    colorFilter: ColorFilter.mode(
+                      isSelected
+                          ? Colors.black
+                          : Colors.black.withValues(alpha: 0.5),
+                      isSelected ? BlendMode.srcIn : BlendMode.dstOut,
+                    ),
+                  )
+                : Icon(iconData),
         label: label,
       );
 }
@@ -158,6 +157,7 @@ enum NavItems {
     image: Svgs.shopSVG,
     label: "Shop",
     indexGet: 0,
+    iconData: Icons.home_filled,
   ),
   category(
     image: Svgs.categorySVG,
@@ -173,17 +173,24 @@ enum NavItems {
     image: Svgs.cartSVG,
     label: "Cart",
     indexGet: 3,
+    iconData: Icons.shopping_cart,
   ),
   profile(
     image: Svgs.profileSVG,
     label: "Profile",
     indexGet: 4,
+    iconData: Icons.person,
   ),
   ;
 
-  final String image, label;
+  final String? image, label;
   final int indexGet;
+  final IconData? iconData;
 
-  const NavItems(
-      {required this.image, required this.label, required this.indexGet});
+  const NavItems({
+    this.image,
+    required this.label,
+    required this.indexGet,
+    this.iconData,
+  });
 }
