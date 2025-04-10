@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_icon.dart';
 
 class FloatingActionWidget extends StatelessWidget {
@@ -15,7 +16,11 @@ class FloatingActionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 40.0),
+      padding: EdgeInsets.only(
+          top: Sizes.height(
+        context,
+        0.04,
+      )),
       child: FloatingActionButton(
         splashColor: Colors.transparent,
         backgroundColor: Colors.transparent,

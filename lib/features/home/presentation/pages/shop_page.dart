@@ -5,7 +5,6 @@ import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_circles.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/category_nav_bar.dart';
-import 'package:shein_ui_clone/features/home/presentation/widgets/coupon_discount.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/header_section.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/home_image_carousel.dart';
 import 'package:shein_ui_clone/features/home/presentation/widgets/home_main_image.dart';
@@ -30,13 +29,15 @@ class _ShopPageState extends State<ShopPage> {
 
   String selectedCategory = 'All';
   int _imageIndex = 0;
-  Color redColor = const Color.fromARGB(175, 225, 0, 42);
-  Color greenColor = const Color.fromARGB(255, 46, 119, 58);
-  Color blueLightColor = const Color.fromARGB(255, 153, 220, 224);
+  Color redColor = const Color.fromARGB(192, 246, 69, 79);
+  Color greenColor = const Color.fromARGB(255, 193, 220, 234);
+  Color blueLightColor = const Color.fromARGB(255, 181, 207, 236);
+  Color skyColor = const Color.fromARGB(255, 64, 137, 206);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.transparent,
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
@@ -44,10 +45,12 @@ class _ShopPageState extends State<ShopPage> {
               pinned: true,
               collapsedHeight: 60,
               backgroundColor: _imageIndex == 0
-                  ? blueLightColor
+                  ? greenColor
                   : _imageIndex == 1
                       ? redColor
-                      : greenColor,
+                      : _imageIndex == 2
+                          ? skyColor
+                          : blueLightColor,
               bottom: PreferredSize(
                   preferredSize: Size(double.infinity, 50),
                   child: SizedBox.shrink()),
@@ -58,10 +61,12 @@ class _ShopPageState extends State<ShopPage> {
                     HeaderSection(
                       isCategory: false,
                       color: _imageIndex == 0
-                          ? blueLightColor
+                          ? greenColor
                           : _imageIndex == 1
                               ? redColor
-                              : greenColor,
+                              : _imageIndex == 2
+                                  ? skyColor
+                                  : blueLightColor,
                     ),
                     Container(
                       padding: const EdgeInsets.only(
@@ -71,10 +76,12 @@ class _ShopPageState extends State<ShopPage> {
                       ),
                       height: 50,
                       color: _imageIndex == 0
-                          ? blueLightColor
+                          ? greenColor
                           : _imageIndex == 1
                               ? redColor
-                              : greenColor,
+                              : _imageIndex == 2
+                                  ? skyColor
+                                  : blueLightColor,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -116,11 +123,11 @@ class _ShopPageState extends State<ShopPage> {
               child: Column(
                 children: [
                   SizedBox(
-                      height: 170,
+                      height: 160,
                       width: double.infinity,
                       child: CarouselSlider.builder(
                           carouselController: controller,
-                          itemCount: 3,
+                          itemCount: HomeMainImages.values.length,
                           options: CarouselOptions(
                             onPageChanged: (index, reason) {
                               setState(() {
@@ -133,8 +140,7 @@ class _ShopPageState extends State<ShopPage> {
                           itemBuilder: (context, index, ins) {
                             final imagePath =
                                 HomeMainImages.values[index].imagePath;
-                            final description =
-                                HomeMainImages.values[index].description;
+
                             final name = HomeMainImages.values[index].name;
                             // final backgroundColor = HomeMainImages.values[index].color;
                             // print(backgroundColor);
@@ -148,7 +154,6 @@ class _ShopPageState extends State<ShopPage> {
                                   )
                                   .toList(),
                               imagePath: imagePath,
-                              description: description,
                             );
                           })),
                   Padding(
@@ -156,11 +161,12 @@ class _ShopPageState extends State<ShopPage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         const ShippingPromoWidget(),
-                        const CouponRow(),
+                        // const CouponRow(),
                         const CategoryCircles(),
+                        SuperDealsSection(),
                         SuperDealsSection(),
                       ],
                     ),

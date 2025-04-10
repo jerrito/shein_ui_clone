@@ -22,9 +22,9 @@ class SheinTheme {
         // unselectedItemColor: Colors.shaqGrey700,
         // backgroundColor: Colors.shaqBackgroundLight,
         selectedLabelStyle: TextStyle(
-          fontSize: 12,
+          fontSize: 10,
           color: Colors.black,
-          fontWeight: FontWeight.bold,
+          // fontWeight: FontWeight.bold,
         ),
         unselectedLabelStyle: TextStyle(
           fontSize: 10,

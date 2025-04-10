@@ -9,7 +9,7 @@ class ProductCard extends StatelessWidget {
   final String? subTag; // e.g., "High Repeat Customers"
   final String? discount; // e.g., "-24%"
 
-  const ProductCard({
+  const ProductCard({super.key, 
     required this.imageUrl,
     required this.title,
     required this.tags,

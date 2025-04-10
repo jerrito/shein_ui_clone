@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shein_ui_clone/assets/svgs.dart';
+import 'package:shein_ui_clone/core/media_query_size.dart';
 import 'package:shein_ui_clone/core/widgets/bottom_navbar.dart';
 import 'package:shein_ui_clone/core/widgets/floating_action_widget.dart';
 import 'package:shein_ui_clone/features/cart/presentation/pages/cart.dart';
@@ -8,7 +9,6 @@ import 'package:shein_ui_clone/features/home/presentation/pages/shop_page.dart';
 import 'package:shein_ui_clone/features/profile/presentation/pages/profile_page.dart';
 import 'package:shein_ui_clone/features/trends/presentation/pages/trends_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shein_ui_clone/features/trends/presentation/widgets/trend_icon.dart';
 
 class SheinAppBase extends StatefulWidget {
   final int currentIndex;
@@ -74,7 +74,7 @@ class _SheinAppBaseState extends State<SheinAppBase> {
                 e.indexGet == currentIndex,
                 e.indexGet == 2,
                 e.indexGet == 1,
-                e.iconData,
+                e.selectedIcon,
               ),
             )
             .toList(),
@@ -129,7 +129,7 @@ class _SheinAppBaseState extends State<SheinAppBase> {
   ];
 // nav bar item
   BottomNavigationBarItem barItem(String svg, String label, bool isSelected,
-          bool isTrend, bool isCategory, IconData? iconData) =>
+          bool isTrend, bool isCategory, String? iconData) =>
       BottomNavigationBarItem(
         icon: isTrend
             ? SizedBox(
@@ -138,8 +138,8 @@ class _SheinAppBaseState extends State<SheinAppBase> {
             : !isSelected || isCategory
                 ? SvgPicture.asset(
                     svg,
-                    // width: Sizes.height(context, 0.028),
-                    // height: Sizes.height(context, 0.028),
+                    width: Sizes.height(context, 0.024),
+                    height: Sizes.height(context, 0.024),
                     colorFilter: ColorFilter.mode(
                       isSelected
                           ? Colors.black
@@ -147,7 +147,17 @@ class _SheinAppBaseState extends State<SheinAppBase> {
                       isSelected ? BlendMode.srcIn : BlendMode.dstOut,
                     ),
                   )
-                : Icon(iconData),
+                : SvgPicture.asset(
+                    iconData ?? svg,
+                    width: Sizes.height(context, 0.024),
+                    height: Sizes.height(context, 0.024),
+                    colorFilter: ColorFilter.mode(
+                      isSelected
+                          ? Colors.black
+                          : Colors.black.withValues(alpha: 0.5),
+                      isSelected ? BlendMode.srcIn : BlendMode.dstOut,
+                    ),
+                  ),
         label: label,
       );
 }
@@ -157,7 +167,7 @@ enum NavItems {
     image: Svgs.shopSVG,
     label: "Shop",
     indexGet: 0,
-    iconData: Icons.home_filled,
+    selectedIcon: Svgs.homeFilledSVG,
   ),
   category(
     image: Svgs.categorySVG,
@@ -173,24 +183,23 @@ enum NavItems {
     image: Svgs.cartSVG,
     label: "Cart",
     indexGet: 3,
-    iconData: Icons.shopping_cart,
+    selectedIcon: Svgs.shopFilledSVG,
   ),
   profile(
     image: Svgs.profileSVG,
-    label: "Profile",
+    label: "Me",
     indexGet: 4,
-    iconData: Icons.person,
+    selectedIcon: Svgs.userFilledSVG,
   ),
   ;
 
-  final String? image, label;
+  final String? image, label, selectedIcon;
   final int indexGet;
-  final IconData? iconData;
 
   const NavItems({
     this.image,
     required this.label,
     required this.indexGet,
-    this.iconData,
+    this.selectedIcon,
   });
 }

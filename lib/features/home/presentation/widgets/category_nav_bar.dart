@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shein_ui_clone/core/media_query_size.dart';
 
 class CategoriesNavBar extends StatelessWidget {
   const CategoriesNavBar({

@@ -95,7 +95,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           ))),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 8.0),
+                            vertical: 6.0, horizontal: 4.0),
                         child: Text(
                           sideCategories[index],
                           style: TextStyle(
