@@ -26,31 +26,62 @@ class ShopPage extends StatefulWidget {
 
 class _ShopPageState extends State<ShopPage> {
   final CarouselSliderController controller = CarouselSliderController();
-
+  final ScrollController _scrollController = ScrollController();
+  bool _showCompact = false;
   String selectedCategory = 'All';
   int _imageIndex = 0;
   Color redColor = const Color.fromARGB(192, 246, 69, 79);
   Color greenColor = const Color.fromARGB(255, 193, 220, 234);
   Color blueLightColor = const Color.fromARGB(255, 181, 207, 236);
   Color skyColor = const Color.fromARGB(255, 64, 137, 206);
+  void _scrollListener() {
+    print("na${_scrollController.offset}");
+    if (_scrollController.offset > 120 && !_showCompact) {
+      setState(() => _showCompact = true);
+    } else if (_scrollController.offset <= 120 && _showCompact) {
+      setState(() => _showCompact = false);
+    }
+  }
+
+  @override
+  void initState() {
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_scrollListener);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  getColor(int imageIndex) {
+    switch (imageIndex) {
+      case 0:
+        return greenColor;
+      case 1:
+        return redColor;
+      case 2:
+        return skyColor;
+      case 3:
+        return blueLightColor;
+      default:
+        return Colors.black;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: CustomScrollView(slivers: [
+        child: CustomScrollView(controller: _scrollController, slivers: [
           SliverAppBar(
               toolbarHeight: 55,
               pinned: true,
               collapsedHeight: 60,
-              backgroundColor: _imageIndex == 0
-                  ? greenColor
-                  : _imageIndex == 1
-                      ? redColor
-                      : _imageIndex == 2
-                          ? skyColor
-                          : blueLightColor,
+              backgroundColor: getColor(_imageIndex),
               bottom: PreferredSize(
                   preferredSize: Size(double.infinity, 50),
                   child: SizedBox.shrink()),
@@ -59,14 +90,15 @@ class _ShopPageState extends State<ShopPage> {
                 background: Column(
                   children: [
                     HeaderSection(
+                      iconColor: _scrollController.hasClients && _showCompact
+                          ? Colors.black
+                          : null,
                       isCategory: false,
-                      color: _imageIndex == 0
-                          ? greenColor
-                          : _imageIndex == 1
-                              ? redColor
-                              : _imageIndex == 2
-                                  ? skyColor
-                                  : blueLightColor,
+                      color: !_scrollController.hasClients
+                          ? getColor(_imageIndex)
+                          : _showCompact
+                              ? Colors.white
+                              : getColor(_imageIndex),
                     ),
                     Container(
                       padding: const EdgeInsets.only(
@@ -75,20 +107,21 @@ class _ShopPageState extends State<ShopPage> {
                         bottom: 8,
                       ),
                       height: 50,
-                      color: _imageIndex == 0
-                          ? greenColor
-                          : _imageIndex == 1
-                              ? redColor
-                              : _imageIndex == 2
-                                  ? skyColor
-                                  : blueLightColor,
+                      color: !_scrollController.hasClients
+                          ? getColor(_imageIndex)
+                          : _showCompact
+                              ? Colors.white
+                              : getColor(_imageIndex),
+
+                      // : getColor(_imageIndex),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             width: Sizes.width(context, 0.86),
                             child: CategoriesNavBar(
-                              isCategory: false,
+                              isCategory:
+                                  _scrollController.hasClients && _showCompact,
                               selectedCategory: selectedCategory,
                               categories: widget.categories,
                               categoryIconOnTap: widget.categoryOnTap,
@@ -102,14 +135,21 @@ class _ShopPageState extends State<ShopPage> {
                             height: 30,
                             child: VerticalDivider(
                               thickness: 0.5,
-                              color: Colors.grey[200],
+                              color:
+                                  _scrollController.hasClients && _showCompact
+                                      ? Colors.black
+                                      : Colors.grey[200],
                             ),
                           ),
                           GestureDetector(
                               onTap: widget.categoryOnTap,
                               child: SvgPicture.asset(Svgs.menuSVG,
                                   colorFilter: ColorFilter.mode(
-                                      Colors.white, BlendMode.srcIn)
+                                      _scrollController.hasClients &&
+                                              _showCompact
+                                          ? Colors.black
+                                          : Colors.white,
+                                      BlendMode.srcIn)
                                   // size: 26,
                                   ))
                         ],

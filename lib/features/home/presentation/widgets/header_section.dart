@@ -8,19 +8,21 @@ class HeaderSection extends StatelessWidget {
     super.key,
     required this.color,
     required this.isCategory,
+    this.iconColor,
   });
   final Color color;
+  final Color? iconColor;
   final bool isCategory;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: color,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Row(
         children: [
           Icon(Icons.mail_outline,
-              color: isCategory ? Colors.black : Colors.white),
+              color: iconColor ?? (isCategory ? Colors.black : Colors.white)),
           const SizedBox(width: 12),
           if (!isCategory)
             Badge(
@@ -29,7 +31,7 @@ class HeaderSection extends StatelessWidget {
                   width: 20,
                   height: 20,
                   colorFilter: ColorFilter.mode(
-                    isCategory ? Colors.black : Colors.white,
+                    iconColor ?? (isCategory ? Colors.black : Colors.white),
                     BlendMode.srcIn,
                   )),
             ),
@@ -38,6 +40,8 @@ class HeaderSection extends StatelessWidget {
             child: Container(
               height: 36,
               decoration: BoxDecoration(
+                border:
+                    iconColor != null ? Border.all(color: iconColor!) : null,
                 color: isCategory ? Colors.grey[200] : Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -65,7 +69,8 @@ class HeaderSection extends StatelessWidget {
                   const Spacer(),
                   Icon(
                     Icons.camera_alt_outlined,
-                    color: isCategory ? Colors.black : Colors.black26,
+                    color: iconColor ??
+                        (isCategory ? Colors.black : Colors.black26),
                   ),
                   const SizedBox(width: 6),
                   Container(
@@ -75,7 +80,7 @@ class HeaderSection extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(isCategory ? 2 : 12),
-                      color: isCategory ? Colors.black : color,
+                      color: iconColor ?? (isCategory ? Colors.black : color),
                     ),
                     child: Transform.scale(
                       scale: 0.9,
@@ -94,8 +99,10 @@ class HeaderSection extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          Icon(Icons.favorite_border,
-              color: isCategory ? Colors.black : Colors.white),
+          Icon(
+            Icons.favorite_border,
+            color: iconColor ?? (isCategory ? Colors.black : Colors.white),
+          ),
         ],
       ),
     );
