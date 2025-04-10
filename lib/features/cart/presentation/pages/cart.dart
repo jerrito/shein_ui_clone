@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shein_ui_clone/assets/svgs.dart';
 import 'package:shein_ui_clone/core/widgets/buttons/default_button.dart';
 
 class Cart extends StatefulWidget {
@@ -13,14 +15,14 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // White background for the body
+      // backgroundColor: Colors.white, // White background for the body
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        elevation: 1.0, // Subtle shadow
-        // Custom title arrangement to include location
+        centerTitle: false,
         title: Row(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
@@ -63,11 +65,12 @@ class _CartState extends State<Cart> {
         ],
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0), // Add padding around the content
-          child: Column(
-            children: [
-              Column(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              color: Colors.white,
+              child: Column(
                 // crossAxisAlignment: C,
                 children: [
                   const SizedBox(height: 20.0),
@@ -76,9 +79,10 @@ class _CartState extends State<Cart> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 60.0,
+                      SvgPicture.asset(
+                        Svgs.cartSVG,
+                        width: 60.0,
+                        height: 60.0,
                         color: Colors.grey[600],
                       ),
                       SizedBox(
@@ -113,8 +117,8 @@ class _CartState extends State<Cart> {
                   )
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

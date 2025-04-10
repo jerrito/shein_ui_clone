@@ -6,12 +6,11 @@ class HomeImageCarousel extends StatelessWidget {
   const HomeImageCarousel({
     super.key,
     required this.dotWidgets,
-    this.description,
     this.imagePath,
     required this.name,
   });
   final List<DotWidget> dotWidgets;
-  final String? description, imagePath;
+  final String? imagePath;
   final String name;
 
   @override
@@ -30,14 +29,14 @@ class HomeImageCarousel extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 5),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            description ?? 'Daily Drops | Bestsellers | Special Prices',
-            style: TextStyle(color: Colors.white, fontSize: 12),
-          ),
-        ),
+        // const SizedBox(height: 5),
+        // Align(
+        //   alignment: Alignment.topLeft,
+        //   child: Text(
+        //     description ?? 'Daily Drops | Bestsellers | Special Prices',
+        //     style: TextStyle(color: Colors.white, fontSize: 12),
+        //   ),
+        // ),
       ],
     );
   }
@@ -52,7 +51,7 @@ class HomeImageCarousel extends StatelessWidget {
             fit: BoxFit.cover,
             image: imagePath == ''
                 ? AssetImage(Images.foodImage)
-                : CachedNetworkImageProvider(
+                : AssetImage(
                     imagePath,
                   ),
           )),

@@ -8,8 +8,10 @@ class CategoryCircles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 4),
       child: Wrap(
           spacing: 8,
           runSpacing: 8,

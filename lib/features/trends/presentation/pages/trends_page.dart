@@ -165,39 +165,46 @@ class _TrendsPageState extends State<TrendsPage> {
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          SliverAppBar(
-            backgroundColor: _showCompact ? Colors.black : Colors.transparent,
-            pinned: true,
-            toolbarHeight: 50,
-            collapsedHeight: 55,
-            expandedHeight: Sizes.height(context, 0.4),
-            flexibleSpace: _showCompact
-                ? SafeArea(
-                    child: Container(
-                      height: 50,
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 10,
-                      ),
-                      color: Colors.black,
-                      child: SizedBox(
-                        width: Sizes.width(context, 0.75),
-                        height: 50,
-                        child: TrendSearchWidget(
-                          color: Colors.white,
-                          // Background color for the header
-                        ),
-                      ),
-                    ),
-                  )
-                : TrendImageWidget(
-                    risingPercentage: '22',
-                    daysLeft: "5 days left",
-                    hashTag: 'Lace Accessor',
-                    color: Colors.amber,
-                    image:
-                        'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
-                  ),
+          _showCompact
+              ? SliverAppBar(
+                  backgroundColor:
+                      _showCompact ? Colors.black : Colors.transparent,
+                  pinned: true,
+                  toolbarHeight: 50,
+                  collapsedHeight: 55,
+                  expandedHeight: Sizes.height(context, 0.1),
+                  flexibleSpace: _showCompact
+                      ? SafeArea(
+                          child: Container(
+                            height: 50,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 10,
+                            ),
+                            color: Colors.black,
+                            child: SizedBox(
+                              width: Sizes.width(context, 0.75),
+                              height: 50,
+                              child: TrendSearchWidget(
+                                color: Colors.white,
+                                // Background color for the header
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox.shrink())
+              : SliverToBoxAdapter(
+                  child: SizedBox.shrink(),
+                ),
+          SliverToBoxAdapter(
+            child: TrendImageWidget(
+              risingPercentage: '22',
+              daysLeft: "5 days left",
+              hashTag: 'Lace Accessor',
+              color: Colors.amber,
+              image:
+                  'https://images-cdn.ubuy.co.in/65dd65c6862c8d1233658cdd-formal-suits-for-men-wedding-slim-fit-3.jpg',
+            ),
           ),
           SliverToBoxAdapter(
             child: ListView.builder(

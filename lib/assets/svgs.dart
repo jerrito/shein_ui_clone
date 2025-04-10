@@ -7,4 +7,7 @@ class Svgs {
   static const searchSVG = '${svgBase}search.svg';
   static const archiveSVG = '${svgBase}archive.svg';
   static const menuSVG = '${svgBase}menu.svg';
+  static const shopFilledSVG = '${svgBase}shopping_filled.svg';
+  static const homeFilledSVG = '${svgBase}home_filled.svg';
+  static const userFilledSVG = '${svgBase}user_filled.svg';
 }

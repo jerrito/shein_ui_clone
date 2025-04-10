@@ -30,13 +30,13 @@ class _ShopPageState extends State<ShopPage> {
 
   String selectedCategory = 'All';
   int _imageIndex = 0;
-  Color redColor = const Color.fromARGB(175, 225, 0, 42);
-  Color greenColor = const Color.fromARGB(255, 46, 119, 58);
-  Color blueLightColor = const Color.fromARGB(255, 153, 220, 224);
+  Color redColor = const Color.fromARGB(192, 246, 69, 79);
+  Color greenColor = const Color.fromARGB(255, 71, 107, 136);
+  Color blueLightColor = const Color.fromARGB(255, 166, 202, 227);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
@@ -116,7 +116,7 @@ class _ShopPageState extends State<ShopPage> {
               child: Column(
                 children: [
                   SizedBox(
-                      height: 170,
+                      height: 160,
                       width: double.infinity,
                       child: CarouselSlider.builder(
                           carouselController: controller,
@@ -133,8 +133,7 @@ class _ShopPageState extends State<ShopPage> {
                           itemBuilder: (context, index, ins) {
                             final imagePath =
                                 HomeMainImages.values[index].imagePath;
-                            final description =
-                                HomeMainImages.values[index].description;
+
                             final name = HomeMainImages.values[index].name;
                             // final backgroundColor = HomeMainImages.values[index].color;
                             // print(backgroundColor);
@@ -148,7 +147,6 @@ class _ShopPageState extends State<ShopPage> {
                                   )
                                   .toList(),
                               imagePath: imagePath,
-                              description: description,
                             );
                           })),
                   Padding(
@@ -156,10 +154,10 @@ class _ShopPageState extends State<ShopPage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 10,
+                          height: 5,
                         ),
                         const ShippingPromoWidget(),
-                        const CouponRow(),
+                        // const CouponRow(),
                         const CategoryCircles(),
                         SuperDealsSection(),
                       ],

@@ -11,6 +11,11 @@ class SuperDealsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+        const Color.fromARGB(255, 243, 241, 241),
+        Colors.grey[50]!,
+      ])),
       margin: const EdgeInsets.only(bottom: 16),
       child: Column(
         children: [
@@ -19,33 +24,9 @@ class SuperDealsSection extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    const Text(
-                      'Super',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    // const Icon(Icons.flash_on, color: Colors.orange),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DLogoWidget(
-                        size: 24.0, // Adjust the overall size of the logo
-                        // boltColor: Colors.amber, // Color of the thunderbolt
-                        curveColor: Colors.black, // Color of the D's curve
-                        // curveStrokeWidth: 20.0, // Thickness of the D's curve
-                      ),
-                    ),
-                    const Text(
-                      'eals',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                Image.asset(
+                  Images.superDealImage,
+                  height: 12,
                 ),
                 Row(
                   children: const [
