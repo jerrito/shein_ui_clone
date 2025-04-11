@@ -217,7 +217,11 @@ class _TrendsPageState extends State<TrendsPage> {
                                 : 'blob',
                         risingPercentage: '${index != 0 ? index * 10 : 4}',
                         daysLeft: "${index != 0 ? index * 2 : 2} days left",
-                        hashTag: 'Lace Accessor',
+                        hashTag: index == 0
+                            ? '#Radiant Glow'
+                            : index == 1
+                                ? '#Eid Sparkling joy'
+                                : '#Lace Accessor',
                         color: index == 1
                             ? const Color.fromARGB(255, 221, 226, 77)
                             : index == 2
