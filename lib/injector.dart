@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shein_ui_clone/features/authentication/data/datasources/firebase_auth.dart';
 import 'package:shein_ui_clone/features/authentication/data/repositories/auth_repository_imp.dart';
 import 'package:shein_ui_clone/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/auth_state_change.dart';
+import 'package:shein_ui_clone/features/authentication/domain/usecases/google_sign_in.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/sign_in_email.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/sign_out.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/sign_up_email.dart';
@@ -22,6 +24,7 @@ Future<void> init() async {
         signInUseCase: sl(),
         signOutUseCase: sl(),
         getAuthStateChangesUseCase: sl(),
+        googleSignIn: sl(),
       ));
 
   // UseCases (depend on Repository) - Register as lazy singletons
@@ -29,6 +32,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => SignInWithEmail(sl()));
   sl.registerLazySingleton(() => SignOut(sl()));
   sl.registerLazySingleton(() => GetAuthStateChanges(sl()));
+  sl.registerLazySingleton(() => GoogleSignInUseCase(sl()));
 
   // Repository (depends on DataSource and NetworkInfo) - Register as lazy singleton
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(
@@ -38,7 +42,10 @@ Future<void> init() async {
 
   // DataSources (depend on external packages like FirebaseAuth) - Register as lazy singleton
   sl.registerLazySingleton<FirebaseAuthDataSource>(
-      () => FirebaseAuthDataSourceImpl(firebaseAuth: sl()));
+      () => FirebaseAuthDataSourceImpl(
+            firebaseAuth: sl(),
+            googleSignIn: GoogleSignIn(),
+          ));
 
   // --- Core ---
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));

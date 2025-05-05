@@ -28,4 +28,6 @@ abstract class AuthRepository {
 
   // Optional: Send password reset email
   // Future<Either<Failure, void>> sendPasswordResetEmail({required String email});
+
+  Future<Either<Failure, User>> signInWithGoogle();
 }

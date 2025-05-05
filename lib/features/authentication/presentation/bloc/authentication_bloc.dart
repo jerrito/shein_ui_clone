@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shein_ui_clone/core/errors/error.dart';
 import 'package:shein_ui_clone/core/usecase/usecase.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/auth_state_change.dart';
+import 'package:shein_ui_clone/features/authentication/domain/usecases/google_sign_in.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/sign_in_email.dart';
 import 'package:shein_ui_clone/features/authentication/domain/usecases/sign_up_email.dart';
 import '../../domain/usecases/sign_out.dart';
@@ -18,6 +19,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthState> {
   final SignInWithEmail _signInUseCase;
   final SignOut _signOutUseCase;
   final GetAuthStateChanges _getAuthStateChangesUseCase;
+  final GoogleSignInUseCase googleSignIn;
   StreamSubscription<User?>? _authStateSubscription;
 
   AuthBloc({
@@ -25,6 +27,7 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthState> {
     required SignInWithEmail signInUseCase,
     required SignOut signOutUseCase,
     required GetAuthStateChanges getAuthStateChangesUseCase,
+    required this.googleSignIn,
   })  : _signUpUseCase = signUpUseCase,
         _signInUseCase = signInUseCase,
         _signOutUseCase = signOutUseCase,
@@ -41,6 +44,15 @@ class AuthBloc extends Bloc<AuthenticationEvent, AuthState> {
     on<AuthSignUpRequested>(_onSignUpRequested);
     on<AuthSignInRequested>(_onSignInRequested);
     on<AuthSignOutRequested>(_onSignOutRequested);
+
+    on<GoogleSignInRequested>((event, emit) async {
+      emit(AuthLoading());
+
+      final result = await googleSignIn();
+
+      result.fold((failure) => emit(AuthFailureState(failure.message)),
+          (user) => emit(AuthAuthenticated(user)));
+    });
   }
 
   @override

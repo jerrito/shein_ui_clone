@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shein_ui_clone/core/errors/error.dart';
 
 abstract class FirebaseAuthDataSource {
@@ -14,12 +15,18 @@ abstract class FirebaseAuthDataSource {
     required String password,
   });
   Future<void> signOut();
+
+  Future<User> signInWithGoogle();
 }
 
 class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
   final FirebaseAuth firebaseAuth;
+  final GoogleSignIn googleSignIn;
 
-  FirebaseAuthDataSourceImpl({required this.firebaseAuth});
+  FirebaseAuthDataSourceImpl({
+    required this.firebaseAuth,
+    required this.googleSignIn,
+  });
 
   @override
   Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
@@ -86,6 +93,38 @@ class FirebaseAuthDataSourceImpl implements FirebaseAuthDataSource {
       throw AuthFailure.fromFirebaseAuthException(e.code);
     } catch (e) {
       throw ServerFailure('Sign out failed: ${e.toString()}');
+    }
+  }
+
+  @override
+  Future<User> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+        throw const AuthFailure('Google sign in was cancelled');
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential =
+          await firebaseAuth.signInWithCredential(credential);
+
+      if (userCredential.user == null) {
+        throw const AuthFailure(
+            'Google sign in failed: User data not available.');
+      }
+
+      return userCredential.user!;
+    } on FirebaseAuthException catch (e) {
+      throw AuthFailure.fromFirebaseAuthException(e.code);
+    } catch (e) {
+      throw ServerFailure('Google sign in failed: ${e.toString()}');
     }
   }
 }

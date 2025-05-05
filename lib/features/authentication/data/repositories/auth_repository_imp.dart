@@ -91,4 +91,16 @@ class AuthRepositoryImpl implements AuthRepository {
           ServerFailure('An unexpected error occurred: ${e.toString()}'));
     }
   }
+
+  @override
+  Future<Either<Failure, User>> signInWithGoogle() async {
+    try {
+      final user = await firebaseAuthDataSource.signInWithGoogle();
+      return Right(user);
+    } on AuthFailure catch (failure) {
+      return Left(failure);
+    } on ServerFailure catch (failure) {
+      return Left(failure);
+    }
+  }
 }

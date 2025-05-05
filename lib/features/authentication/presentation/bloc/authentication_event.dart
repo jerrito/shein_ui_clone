@@ -45,3 +45,5 @@ class AuthSignInRequested extends AuthenticationEvent {
 
 // Event to request sign out
 class AuthSignOutRequested extends AuthenticationEvent {}
+
+class GoogleSignInRequested extends AuthenticationEvent {}
