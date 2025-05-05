@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "682299552956",
+    "project_id": "sheinappclone",
+    "storage_bucket": "sheinappclone.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682299552956:android:5719abcbb6671233dbccb9",
+        "android_client_info": {
+          "package_name": "com.example.shein_ui_clone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyAf8W2kfAxrRGYt5JOg_FAvd2k_wpsgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
